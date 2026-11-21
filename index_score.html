@@ -15,8 +15,6 @@
     --muted: #8c8c8c;
     --soft:  #e5e5e5;
     --kai:   "KaiTi","楷体","STKaiti","Kaiti SC","SimSun","宋体",serif;
-    
-    /* 参考图中的无衬线字体栈 */
     --sans:  "Helvetica Neue", "DengXian", "等线", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
 
@@ -50,6 +48,7 @@
     display:flex; align-items:center; justify-content:space-between;
     padding:24px 44px;
     background:var(--paper);
+    border-bottom: 1px solid var(--soft);
   }
   .brand{
     font-size:15px; 
@@ -73,7 +72,7 @@
   }
 
   /* ============================================================
-     主页 Hero（融合参考图超大排版）
+     主页 Hero（超大排版）
      ============================================================ */
   .hero{
     flex:1;
@@ -85,21 +84,15 @@
     flex-direction:column;
   }
 
-  .eyebrow{
-    font-size:12px; letter-spacing:.1em; color:var(--muted);
-    text-transform:lowercase;
-    margin-bottom: 20px;
-  }
-
-  /* 核心超大标题 */
+  /* 核心超大标题（复刻截图样式） */
   .greeting{
     font-size:clamp(48px, 9vw, 140px);
     line-height:1.05;
-    font-weight:800;      /* 极粗 */
-    letter-spacing:-0.04em; /* 紧凑 */
+    font-weight:800;
+    letter-spacing:-0.04em;
     color:var(--ink);
     padding-bottom:32px;
-    border-bottom:1.5px solid var(--soft); /* 参考图底部的细线 */
+    border-bottom:1.5px solid var(--soft);
     word-break: break-word;
   }
 
@@ -132,13 +125,6 @@
     transform:translateY(-2px);
   }
 
-  @keyframes rise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
-  .anim{ animation:rise .7s cubic-bezier(.2,.7,.3,1) both; }
-  .d1{ animation-delay:.05s; }
-  .d2{ animation-delay:.13s; }
-  .d3{ animation-delay:.21s; }
-  .d4{ animation-delay:.29s; }
-
   /* ============================================================
      查询面板
      ============================================================ */
@@ -146,7 +132,6 @@
     margin-top:80px;
     padding-top:44px;
     border-top:1.5px solid var(--ink);
-    animation:rise .5s ease both;
   }
   .panel-head{
     display:flex; align-items:baseline; justify-content:space-between;
@@ -251,17 +236,14 @@
     padding:24px;
     background:rgba(255,255,255,.9);
     backdrop-filter:blur(8px);
-    animation:fade .25s ease both;
   }
   .modal[hidden]{ display:none; }
-  @keyframes fade{ from{opacity:0;} to{opacity:1;} }
 
   .modal-box{
     width:100%; max-width:780px;
     display:flex;
     background:var(--paper);
     border:1.5px solid var(--ink);
-    animation:rise .35s ease both;
   }
   .modal-box.narrow{ max-width:480px; flex-direction:column; }
 
@@ -295,7 +277,7 @@
   }
   .modal-close:hover{ transform:rotate(90deg); }
 
-  .pane{ display:none; animation:rise .3s ease both; }
+  .pane{ display:none; }
   .pane.active{ display:block; }
   .pane-title{ font-size:22px; font-weight:800; letter-spacing:-0.02em; }
   .pane-desc{ margin-top:8px; font-size:13px; color:var(--muted); }
@@ -371,13 +353,12 @@
 
 <!-- 主页 -->
 <main class="hero">
-  <p class="eyebrow anim d1">challenge results</p>
   <!-- 超大排版标题 -->
-  <h1 class="greeting anim d2">你好，<span id="userName">访客</span></h1>
+  <h1 class="greeting">你好，<span id="userName">访客</span></h1>
   
-  <p class="lede anim d3">选择年份与月份，即可查询你在小力神杯足球赛挑战赛中的名次，并查看各项等级成绩的累计总成绩。</p>
+  <p class="lede">选择年份与月份，即可查询你在小力神杯足球赛挑战赛中的名次，并查看各项等级成绩的累计总成绩。</p>
   
-  <button class="query-btn anim d4" id="queryBtn" type="button">查询我的成绩</button>
+  <button class="query-btn" id="queryBtn" type="button">查询我的成绩</button>
 
   <!-- 查询面板 -->
   <section class="panel" id="panel" hidden>
@@ -516,7 +497,7 @@
 
 <script>
 /* ================================================================
-   ★ 配置区：填入你的 Supabase 地址与 anon key（不要填 secret！）
+   ★ 配置区：填入你的 Supabase 地址与 anon key
    ================================================================ */
 const SUPABASE_URL      = 'https://YOUR-PROJECT.supabase.co';   
 const SUPABASE_ANON_KEY = 'YOUR-ANON-KEY';                      
